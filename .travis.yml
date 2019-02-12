@@ -1,5 +1,5 @@
 sudo: required
-services: 
+services:
   - docker
 
 env:
@@ -12,7 +12,7 @@ before_install:
 
 script:
   - container_id=$(mktemp)
-  - 'sudo docker run --detach --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro --volume="${PWD}":/etc/ansible/roles/el7-isolinux:ro ${distribution}-${version}:ansible > "${container_id}"'
+  - 'sudo docker run --detach --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro -v /dev/urandom:/dev/random --volume="${PWD}":/etc/ansible/roles/el7-isolinux:ro ${distribution}-${version}:ansible > "${container_id}"'
   - 'sudo docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v /etc/ansible/roles/el7-isolinux/tests/test.yml --syntax-check'
   - 'sudo docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v /etc/ansible/roles/el7-isolinux/tests/test.yml'
   - >

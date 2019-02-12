@@ -11,6 +11,8 @@ The included files include:
 * ssg-suplemental.sh
 * ipa-pam-configuration.sh
 
+https://blog.travis-ci.com/2017-11-30-testing-ansible-roles-using-docker-on-travis
+
 ## Documentation
 
 ## Requirements
