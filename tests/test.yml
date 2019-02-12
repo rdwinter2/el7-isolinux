@@ -4,4 +4,6 @@
   become: true
   become_method: 'sudo'
   roles:
-    - { role: el7-kickstart }
+    - { role: el7-isolinux }
+
+...
