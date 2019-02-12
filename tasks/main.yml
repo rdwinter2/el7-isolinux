@@ -5,10 +5,11 @@
     cmd: date
   register: datetime
 
-- name: "Create a random bootloader password"
-  command: yes `openssl rand -base64 48` | grub2-mkpasswd-pbkdf2 | awk '/grub.pbkdf/{print$NF}'
-  register: bootloader_pw
-  when: randomize_bootloader_pw
+# Environmental localization should be when the bootloader is set
+#- name: "Create a random bootloader password"
+#  command: yes `openssl rand -base64 48` | grub2-mkpasswd-pbkdf2 | awk '/grub.pbkdf/{print$NF}'
+#  register: bootloader_pw
+#  when: randomize_bootloader_pw
 
 - name: "Create specific isolinx.cfg for this machine's UUID {{ newvm.ansible_facts.hw_product_uuid }}"
   template:

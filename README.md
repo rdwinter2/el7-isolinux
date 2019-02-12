@@ -70,3 +70,6 @@ MIT
 ## References
 
 *
+
+
+dd if=<(openssl enc -aes-256-ctr -pass pass:"$(dd if=/dev/urandom bs=128 count=1 2>/dev/null | base64)" -nosalt < /dev/zero) of=filename bs=1M count=100 iflag=fullblock
