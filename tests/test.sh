@@ -3,7 +3,7 @@ cd /opt/ansible
 . /opt/ansible/hacking/env-setup -q
 cd
 
-PATH=/opt/ansible/bin:/usr/local/bin/ansible/bin:/usr/local/bin/ansible/test/runner:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/rdwinter2/.local/bin:/home/rdwinter2/bin:~/.local/bin:~/bin
+PATH=/opt/ansible/bin:/usr/local/bin/ansible/bin:/usr/local/bin/ansible/test/runner:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:~/.local/bin:~/bin
 
 ansible-playbook -v /test.yml -i /inventory --forks 5 --syntax-check
 
