@@ -1,24 +1,23 @@
 ---
 
-- name: Find the current date/time
+- name: "Find the current date/time"
   shell:
     cmd: date
   register: datetime
 
-- name: Create a random bootloader password
+- name: "Create a random bootloader password"
   command: yes `openssl rand -base64 48` | grub2-mkpasswd-pbkdf2 | awk '/grub.pbkdf/{print$NF}'
   register: bootloader_pw
   when: randomize_bootloader_pw
 
-- name: Create specific isolinx.cfg for this machine's UUID: {{ newvm.ansible_facts.hw_product_uuid }}
+- name: "Create specific isolinx.cfg for this machine's UUID {{ newvm.ansible_facts.hw_product_uuid }}"
   template:
     src: isolinux.cfg.j2
     dest: "/var/lib/tftpboot/pxelinx.cfg/{{ newvm.ansible_facts.hw_product_uuid }}"
     mode: '0644'
 
-- name: Create specific kickstart file
+- name: "Create specific kickstart file"
   template:
-
     src: ks.cfg.j2
     dest: /var/ftp/pub/{{ newvm.ansible_facts.hw_product_uuid }}_ks.cfg
     mode: '0644'
@@ -32,4 +31,3 @@
 # firewall-offline-cmd --service=service --add-source-port=portid[-portid]/protocol
 # firewall-offline-cmd --service=service --add-module=module
 # firewall-offline-cmd --service=service --set-destination=ipv:address[/mask]
-
